@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI脈動 — 每週 AI 科技新聞彙整</title>
+  <meta name="description" content="以台灣繁體中文整理全球 AI 最新動態，含深度摘要與名詞解釋，讓你輕鬆掌握 AI 時代脈絡。" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', system-ui, sans-serif;
+      background: #F8FAFC;
+      color: #0F172A;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Header ── */
+    .site-header {
+      background: #fff;
+      border-bottom: 1px solid #E2E8F0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .site-logo {
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: .02em;
+      color: #0F172A;
+    }
+    .site-logo span { color: #2563EB; }
+    .site-tagline {
+      font-size: .78rem;
+      color: #94A3B8;
+      margin-left: .25rem;
+      display: none;
+    }
+    @media (min-width: 480px) { .site-tagline { display: inline; } }
+    .header-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .update-badge {
+      background: #DCFCE7;
+      color: #15803D;
+      font-size: .72rem;
+      font-weight: 700;
+      padding: .2em .75em;
+      border-radius: 999px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #EFF6FF 0%, #F8FAFC 60%, #F0FDF4 100%);
+      border-bottom: 1px solid #E2E8F0;
+      padding: 2.75rem 1.5rem 2rem;
+    }
+    .hero-inner { max-width: 1200px; margin: 0 auto; }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: .6rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: #2563EB;
+    }
+    .hero p {
+      color: #475569;
+      font-size: 1rem;
+      max-width: 560px;
+      line-height: 1.75;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat .num { font-size: 1.5rem; font-weight: 700; color: #2563EB; }
+    .hero-stat .lbl { font-size: .75rem; color: #64748B; margin-top: .1rem; }
+
+    /* ── Filter Bar ── */
+    .filter-bar {
+      background: #fff;
+      border-bottom: 1px solid #E2E8F0;
+      padding: .75rem 1.5rem;
+      position: sticky;
+      top: 60px;
+      z-index: 90;
+      overflow-x: auto;
+    }
+    .filter-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+      white-space: nowrap;
+    }
+    .filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .4em 1em;
+      border-radius: 999px;
+      border: 1.5px solid #E2E8F0;
+      background: #F8FAFC;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .18s;
+      white-space: nowrap;
+      font-family: inherit;
+      color: #475569;
+    }
+    .filter-btn:hover { border-color: #2563EB; color: #2563EB; background: #EFF6FF; }
+    .filter-btn.active { background: #2563EB; border-color: #2563EB; color: #fff; }
+
+    /* ── Main Grid ── */
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0F172A;
+    }
+    .section-count {
+      font-size: .82rem;
+      color: #94A3B8;
+    }
+
+    /* ── Featured Article (Top Card) ── */
+    .featured-card {
+      background: #fff;
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      transition: box-shadow .2s, transform .2s;
+    }
+    @media (min-width: 700px) {
+      .featured-card { grid-template-columns: 1fr 1fr; }
+    }
+    .featured-card:hover { box-shadow: 0 8px 32px rgba(37,99,235,.1); transform: translateY(-2px); }
+    .featured-visual {
+      background: linear-gradient(135deg, #1E3A5F 0%, #2563EB 60%, #60A5FA 100%);
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .featured-visual .feat-icon {
+      font-size: 4rem;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,.3));
+    }
+    .featured-body { padding: 1.75rem; }
+    .featured-body .pill { margin-bottom: .75rem; display: inline-block; }
+    .featured-body h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: .6rem;
+    }
+    .featured-body h2 a:hover { color: #2563EB; }
+    .featured-body p { font-size: .9rem; color: #64748B; margin-bottom: 1rem; }
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .85rem;
+      font-weight: 600;
+      color: #2563EB;
+      border: 1.5px solid #2563EB;
+      border-radius: 999px;
+      padding: .35em .9em;
+      transition: all .18s;
+    }
+    .read-more:hover { background: #2563EB; color: #fff; }
+
+    /* ── News Grid ── */
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.1rem;
+    }
+    @media (min-width: 580px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .news-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .news-card {
+      background: #fff;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .2s, transform .2s;
+      cursor: pointer;
+    }
+    .news-card:hover { box-shadow: 0 6px 24px rgba(37,99,235,.09); transform: translateY(-2px); }
+    .news-card .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: .75rem; }
+    .news-card h3 { font-size: .95rem; font-weight: 700; line-height: 1.45; margin-bottom: .5rem; flex: 1; }
+    .news-card h3 a:hover { color: #2563EB; }
+    .news-card .card-summary { font-size: .85rem; color: #64748B; line-height: 1.65; flex: 1; margin-bottom: .9rem; }
+    .news-card .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: .75rem;
+      border-top: 1px solid #F1F5F9;
+    }
+    .card-meta { font-size: .75rem; color: #94A3B8; }
+    .card-link {
+      font-size: .78rem;
+      font-weight: 600;
+      color: #2563EB;
+      border: 1px solid #BFDBFE;
+      border-radius: 999px;
+      padding: .2em .7em;
+      transition: all .15s;
+    }
+    .card-link:hover { background: #2563EB; color: #fff; border-color: #2563EB; }
+
+    /* ── Pill Badges ── */
+    .pill {
+      display: inline-block;
+      padding: .22em .85em;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .pill-taiwan  { background: #DCFCE7; color: #15803D; }
+    .pill-agent   { background: #FEF3C7; color: #92400E; }
+    .pill-policy  { background: #F0F4FF; color: #3730A3; }
+    .pill-model   { background: #F0FDF4; color: #15803D; }
+    .pill-safety  { background: #FFF1F2; color: #BE123C; }
+    .pill-robot   { background: #FDF4FF; color: #7E22CE; }
+    .pill-biz     { background: #F0F9FF; color: #0369A1; }
+    .pill-all     { background: #F1F5F9; color: #475569; }
+
+    /* ── No results ── */
+    .no-results {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #94A3B8;
+      font-size: .95rem;
+      display: none;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      background: #fff;
+      border-top: 1px solid #E2E8F0;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: .8rem;
+      color: #94A3B8;
+      line-height: 2;
+    }
+    .site-footer strong { color: #475569; }
+
+    /* ── Scroll to top ── */
+    .back-top {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #2563EB;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(37,99,235,.35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .2s;
+      z-index: 200;
+    }
+    .back-top.visible { display: flex; }
+    .back-top:hover { background: #1D4ED8; }
+  </style>
+</head>
+<body>
+
+  <!-- ── Site Header ── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div>
+        <span class="site-logo">AI<span>脈動</span></span>
+        <span class="site-tagline">· 每週 AI 科技新聞彙整</span>
+      </div>
+      <div class="header-right">
+        <span class="update-badge">🔄 2026/11/16 更新</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>掌握 <em>AI 時代</em> 的每一步脈動</h1>
+      <p>以台灣繁體中文整理全球最新 AI 動態，附上深度摘要與名詞解釋，讓沒有技術背景的人也能輕鬆讀懂。</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">6</div><div class="lbl">本週精選文章</div></div>
+        <div class="hero-stat"><div class="num">7</div><div class="lbl">涵蓋主題分類</div></div>
+        <div class="hero-stat"><div class="num">每週</div><div class="lbl">固定更新頻率</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Filter Bar ── -->
+  <nav class="filter-bar" aria-label="分類篩選">
+    <div class="filter-inner">
+      <button class="filter-btn active" data-filter="all">🗂️ 全部</button>
+      <button class="filter-btn" data-filter="taiwan">🇹🇼 台灣動態</button>
+      <button class="filter-btn" data-filter="model">🧠 模型發展</button>
+      <button class="filter-btn" data-filter="agent">🤖 AI 代理</button>
+      <button class="filter-btn" data-filter="policy">🏛️ 政策法規</button>
+      <button class="filter-btn" data-filter="safety">🛡️ 安全治理</button>
+      <button class="filter-btn" data-filter="robot">🦾 機器人</button>
+      <button class="filter-btn" data-filter="biz">💼 產業應用</button>
+    </div>
+  </nav>
+
+  <!-- ── Main Content ── -->
+  <main class="main-content">
+
+    <!-- Featured -->
+    <div class="section-header">
+      <span class="section-title">📌 本週焦點</span>
+    </div>
+
+    <article class="featured-card" data-category="taiwan">
+      <div class="featured-visual">
+        <div class="feat-icon">🇹🇼</div>
+      </div>
+      <div class="featured-body">
+        <span class="pill pill-taiwan">🇹🇼 台灣動態</span>
+        <h2><a href="posts/2026-11-16-taiwan-ai-ranking.html">IMD 2026 世界數位與 AI 競爭力評比：台灣全球第 13，4 項指標世界第一</a></h2>
+        <p>瑞士 IMD 公布最新評比，台灣以 92.44 分排名全球第 13，企業對 AI 資安風險的認知新制首年即奪下世界第一。數位發展部：這是台灣在資安聯防與 AI 治理上獲國際認可的里程碑。</p>
+        <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
+          <a href="posts/2026-11-16-taiwan-ai-ranking.html" class="read-more">閱讀全文 →</a>
+          <span style="font-size:.78rem;color:#94A3B8">📅 2026/11/16 · 🕐 約4分鐘</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- News Grid -->
+    <div class="section-header">
+      <span class="section-title">📰 本週所有文章</span>
+      <span class="section-count" id="article-count">共 5 篇</span>
+    </div>
+
+    <div class="news-grid" id="news-grid">
+
+      <!-- Card 1 -->
+      <article class="news-card" data-category="taiwan" onclick="location.href='posts/2026-11-16-taiwan-ai-plan.html'">
+        <div class="card-top">
+          <span class="pill pill-taiwan">🇹🇼 台灣動態</span>
+        </div>
+        <h3><a href="posts/2026-11-16-taiwan-ai-plan.html">政院宣布「AI新十大建設」：1,300億打造人工智慧島，AI方舟計畫扎根教育</a></h3>
+        <p class="card-summary">行政院長卓榮泰宣布，未來 4 年投入逾 1,300 億元推動 AI 新十大建設，教育部同步啟動 117 億的 AI 人才方舟計畫，從中小學扎根。</p>
+        <div class="card-footer">
+          <span class="card-meta">📅 2026/11/16 · 約3分鐘</span>
+          <a href="posts/2026-11-16-taiwan-ai-plan.html" class="card-link">閱讀 →</a>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="news-card" data-category="agent" onclick="location.href='posts/2026-11-15-ai-agent-era.html'">
+        <div class="card-top">
+          <span class="pill pill-agent">🤖 AI 代理</span>
+        </div>
+        <h3><a href="posts/2026-11-15-ai-agent-era.html">2026年是 AI Agent 部署元年：從被動問答到自主執行，駭客也開始用 AI 打 AI</a></h3>
+        <p class="card-summary">AI Agent 大規模落地，自主接管跨系統複雜任務成產業主流。但惡意 Agent 也同步升溫，自動掃描並竊取 AI 應用的 API 金鑰。</p>
+        <div class="card-footer">
+          <span class="card-meta">📅 2026/11/15 · 約5分鐘</span>
+          <a href="posts/2026-11-15-ai-agent-era.html" class="card-link">閱讀 →</a>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="news-card" data-category="policy" onclick="location.href='posts/2026-11-14-eu-ai-act-2026.html'">
+        <div class="card-top">
+          <span class="pill pill-policy">🏛️ 政策法規</span>
+        </div>
+        <h3><a href="posts/2026-11-14-eu-ai-act-2026.html">歐盟 AI 法案 2026 進度：透明度義務正式執法，高風險 AI 系統延至 2027</a></h3>
+        <p class="card-summary">AI 客服不告知用戶是 AI、Deepfake 未標示，最高罰 1,500 萬歐元。台灣企業只要服務觸及歐盟用戶，即須遵守。</p>
+        <div class="card-footer">
+          <span class="card-meta">📅 2026/11/14 · 約5分鐘</span>
+          <a href="posts/2026-11-14-eu-ai-act-2026.html" class="card-link">閱讀 →</a>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="news-card" data-category="model" onclick="location.href='posts/2026-11-13-gemini4-hydrogen.html'">
+        <div class="card-top">
+          <span class="pill pill-model">🧠 模型發展</span>
+        </div>
+        <h3><a href="posts/2026-11-13-gemini4-hydrogen.html">Google 推出 Gemini 4 Hydrogen：專為 AI Agent 日常工作設計的高效執行模型</a></h3>
+        <p class="card-summary">Gemini 4 Hydrogen 主打低延遲高吞吐，搭配 Orchestrator 框架，讓深度推理與快速執行在同一工作流程中動態切換。</p>
+        <div class="card-footer">
+          <span class="card-meta">📅 2026/11/13 · 約4分鐘</span>
+          <a href="posts/2026-11-13-gemini4-hydrogen.html" class="card-link">閱讀 →</a>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="news-card" data-category="robot" onclick="location.href='posts/2026-11-14-embodied-ai-robot.html'">
+        <div class="card-top">
+          <span class="pill pill-robot">🦾 機器人</span>
+        </div>
+        <h3><a href="posts/2026-11-14-embodied-ai-robot.html">AI 直接操控機器人：跳過中間層，延遲降低 40%，具身智能迎來架構革命</a></h3>
+        <p class="card-summary">研究人員讓 LLM 直接輸出馬達控制參數，省去傳統三層架構的中間轉換，機器人反應延遲大降 40%，具身智能設計典範正在改寫。</p>
+        <div class="card-footer">
+          <span class="card-meta">📅 2026/11/14 · 約4分鐘</span>
+          <a href="posts/2026-11-14-embodied-ai-robot.html" class="card-link">閱讀 →</a>
+        </div>
+      </article>
+
+    </div><!-- /news-grid -->
+
+    <div class="no-results" id="no-results">
+      <div style="font-size:2.5rem;margin-bottom:.5rem">🔍</div>
+      這個分類目前沒有文章，請選擇其他分類或查看「全部」。
+    </div>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div>
+      <strong>AI脈動</strong> · 每週更新 · 以台灣繁體中文整理全球 AI 科技動態<br>
+      內容為人工彙整摘要，附原始來源供查閱。如有疑問請對照各篇文章引用來源。
+    </div>
+    <div style="margin-top:.5rem">
+      <a href="raw/2026-11-16-weekly.md" style="color:#2563EB;font-size:.8rem">📄 查看本週原始筆記</a>
+      &nbsp;·&nbsp;
+      <a href="AGENTS.md" style="color:#2563EB;font-size:.8rem">📋 開發規範 (AGENTS.md)</a>
+    </div>
+  </footer>
+
+  <!-- ── Back to top button ── -->
+  <button class="back-top" id="back-top" title="回到頂部" aria-label="回到頂部">↑</button>
+
+  <script>
+    // ── Category Filter ──
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('#news-grid .news-card');
+    const featured = document.querySelector('.featured-card');
+    const noResults = document.getElementById('no-results');
+    const countEl = document.getElementById('article-count');
+
+    function updateFilter(filter) {
+      let visible = 0;
+
+      // Handle featured card
+      if (filter === 'all' || featured.dataset.category === filter) {
+        featured.style.display = '';
+      } else {
+        featured.style.display = 'none';
+      }
+
+      // Handle grid cards
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+
+      countEl.textContent = `共 ${visible} 篇`;
+      noResults.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        updateFilter(btn.dataset.filter);
+      });
+    });
+
+    // ── Back to top ──
+    const backTop = document.getElementById('back-top');
+    window.addEventListener('scroll', () => {
+      backTop.classList.toggle('visible', window.scrollY > 300);
+    });
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+
+</body>
+</html>
