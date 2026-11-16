@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>【模型發展】Google 推出 Gemini 4 Hydrogen：專為 AI Agent 日常工作設計的高效執行模型</title>
+  <script type="application/ld+json">
+  {
+    "title": "Google 推出 Gemini 4 Hydrogen：專為 AI Agent 日常工作設計的高效執行模型",
+    "date": "2026-11-13",
+    "category": "model",
+    "summary": "Google 新發布 Gemini 4 Hydrogen，搭配 Orchestrator 框架，讓深度推理與快速執行動態切換。",
+    "source": "Google Blog",
+    "readTime": "約 4 分鐘"
+  }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Noto Sans TC',system-ui,sans-serif;background:#F8FAFC;color:#0F172A;line-height:1.75}
+    a{color:#2563EB;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .site-header{background:#fff;border-bottom:1px solid #E2E8F0;padding:0 1.5rem}
+    .header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;height:56px;gap:1rem}
+    .site-logo{font-weight:700;font-size:1.1rem;color:#0F172A;letter-spacing:.03em}
+    .site-logo span{color:#2563EB}
+    .back-btn{margin-left:auto;font-size:.85rem;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;padding:.25rem .9rem;transition:all .2s}
+    .back-btn:hover{background:#2563EB;color:#fff;border-color:#2563EB;text-decoration:none}
+    main{max-width:720px;margin:2.5rem auto;padding:0 1.25rem}
+    .pill{display:inline-block;padding:.25em .9em;border-radius:999px;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+    .pill-model{background:#F0FDF4;color:#15803D}
+    .article-meta{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin:.85rem 0 1.5rem}
+    .meta-item{font-size:.82rem;color:#64748B}
+    h1{font-size:1.6rem;font-weight:700;line-height:1.4;margin-bottom:.5rem}
+    .lead{font-size:1.05rem;color:#334155;border-left:3px solid #2563EB;padding-left:1rem;margin-bottom:2rem;line-height:1.8}
+    h2{font-size:1.1rem;font-weight:700;margin:2rem 0 .75rem;color:#1E3A5F}
+    p{margin-bottom:1rem;color:#334155}
+    .model-compare{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.25rem 0}
+    @media(max-width:520px){.model-compare{grid-template-columns:1fr}}
+    .model-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:1.1rem 1.25rem}
+    .model-card .model-name{font-size:1rem;font-weight:700;color:#0F172A;margin-bottom:.4rem}
+    .model-card .model-tag{font-size:.75rem;font-weight:600;padding:.15em .7em;border-radius:999px;display:inline-block;margin-bottom:.5rem}
+    .tag-deep{background:#EDE9FE;color:#6D28D9}
+    .tag-fast{background:#D1FAE5;color:#065F46}
+    .model-card ul{list-style:none;padding:0;font-size:.87rem;color:#475569;line-height:1.9}
+    .model-card ul li::before{content:'• ';color:#2563EB}
+    .insight-box{background:#EFF6FF;border:1px solid #BFDBFE;border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0}
+    .insight-box h3{font-size:.95rem;font-weight:700;color:#1D4ED8;margin-bottom:.5rem}
+    .glossary{background:#FAFAFA;border:1px solid #E2E8F0;border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0}
+    .glossary h2{margin-top:0;font-size:1rem;color:#0F172A}
+    .glossary dl dt{font-weight:700;color:#2563EB;margin-top:.75rem}
+    .glossary dl dd{margin-left:0;color:#475569;font-size:.9rem}
+    .source-list{font-size:.82rem;color:#94A3B8;margin-top:2.5rem;padding-top:1rem;border-top:1px solid #E2E8F0}
+    footer{text-align:center;padding:2rem;font-size:.8rem;color:#94A3B8}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-logo">AI<span>脈動</span></div>
+      <a href="../index.html" class="back-btn">← 返回首頁</a>
+    </div>
+  </header>
+
+  <main>
+    <span class="pill pill-model">🧠 模型發展</span>
+    <h1>Google 推出 Gemini 4 Hydrogen：專為 AI Agent 日常工作設計的高效執行模型</h1>
+    <div class="article-meta">
+      <span class="meta-item">📅 2026 年 11 月 13 日</span>
+      <span class="meta-item">🕐 約 4 分鐘</span>
+      <span class="meta-item">📰 來源：Google Blog</span>
+    </div>
+
+    <p class="lead">
+      Google 正式發布 Gemini 4 Hydrogen，這款新模型專為 AI Agent 在日常任務中的「快速執行」而設計，與同系列注重深度推理的 Carbon、Argon 形成互補。搭配全新的 Orchestrator 框架，系統能在同一工作流程中動態切換深度思考與高效執行，兼顧品質與速度，大幅降低資源消耗。
+    </p>
+
+    <h2>🔬 Gemini 4 系列：不同任務用不同模型</h2>
+    <p>Google 的策略是推出「家族式」模型，每款針對不同需求最佳化，而非單一通用模型。</p>
+
+    <div class="model-compare">
+      <div class="model-card">
+        <div class="model-name">Gemini 4 Carbon / Argon</div>
+        <span class="model-tag tag-deep">🧠 深度推理型</span>
+        <ul>
+          <li>處理複雜多步驟問題</li>
+          <li>強化邏輯推理與科學分析</li>
+          <li>適合程式碼生成、研究摘要</li>
+          <li>速度較慢，消耗較多算力</li>
+        </ul>
+      </div>
+      <div class="model-card">
+        <div class="model-name">Gemini 4 Hydrogen</div>
+        <span class="model-tag tag-fast">⚡ 快速執行型</span>
+        <ul>
+          <li>處理大量日常瑣碎任務</li>
+          <li>低延遲、高吞吐量</li>
+          <li>適合 Agent 工作流中的中間步驟</li>
+          <li>速度快，算力消耗低</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>🎛️ Orchestrator：讓 AI 知道「何時用哪款模型」</h2>
+    <p>Orchestrator（協調器）是 Google 在 Antigravity 開發工具中推出的新框架。它的角色像是一位「任務調度員」：當 AI 面對需要深度思考的問題時，自動調用 Carbon；當任務只需快速查找、格式轉換等簡單操作時，自動切換到 Hydrogen。</p>
+
+    <div class="insight-box">
+      <h3>💡 這對使用者的實際意義是什麼？</h3>
+      <p style="margin:0;color:#1E40AF">以往開發者必須手動選擇「用哪個模型」，各有取捨。Orchestrator 讓這個決定自動化——同一個複雜任務，前期的規劃由聰明但慢的模型負責，後期的批量執行由快速模型接手，整體效率可大幅提升。</p>
+    </div>
+
+    <h2>🤖 Argon 的特殊任務：機器人控制</h2>
+    <p>值得一提的是，同屬 Gemini 4 家族的 Argon 模型特別針對「機器人控制」應用強化，能夠理解空間指令並配合具身 AI 系統操控實體機器人，是 Google 在工業自動化領域的重要布局。</p>
+
+    <div class="glossary">
+      <h2>📖 名詞解釋</h2>
+      <dl>
+        <dt>大型語言模型（LLM，Large Language Model）</dt>
+        <dd>在海量文字資料上訓練的超大型 AI 模型，能理解並生成自然語言。ChatGPT、Gemini、Claude 都屬於此類。模型「大小」通常用「參數量」（億、兆個）衡量。</dd>
+        <dt>推理模型（Reasoning Model）</dt>
+        <dd>在回答前會先進行「慢慢思考」步驟的模型，類似人類在解難題時會打草稿。在數學、邏輯、程式設計等複雜任務上表現遠優於傳統語言模型。</dd>
+        <dt>Orchestrator（協調器 / 編排器）</dt>
+        <dd>在多模型或多 Agent 系統中，負責決定「哪個任務由哪個模型或 Agent 處理」的調度系統，是複雜 AI 工作流的核心元件。</dd>
+        <dt>延遲（Latency）</dt>
+        <dd>從發出請求到收到回應的等待時間。AI 推理中，延遲越低代表回應越快，對於即時互動應用（如語音助理）至關重要。</dd>
+      </dl>
+    </div>
+
+    <div class="source-list">
+      <strong>資料來源：</strong><br>
+      Google Blog（blog.google）
+    </div>
+  </main>
+  <footer>AI脈動 · 每週更新 · 以台灣繁體中文整理全球 AI 動態</footer>
+</body>
+</html>

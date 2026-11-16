@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>【機器人】AI 直接操控機器人：跳過中間層，延遲降低 40%，具身智能迎來架構革命</title>
+  <script type="application/ld+json">
+  {
+    "title": "AI 直接操控機器人：跳過中間層，延遲降低 40%，具身智能迎來架構革命",
+    "date": "2026-11-14",
+    "category": "robot",
+    "summary": "新研究讓 LLM 直接輸出機器人馬達控制參數，省去中間解析步驟，延遲大降 40%。",
+    "source": "emergent.sh、MIT、UC Berkeley",
+    "readTime": "約 4 分鐘"
+  }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Noto Sans TC',system-ui,sans-serif;background:#F8FAFC;color:#0F172A;line-height:1.75}
+    a{color:#2563EB;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .site-header{background:#fff;border-bottom:1px solid #E2E8F0;padding:0 1.5rem}
+    .header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;height:56px;gap:1rem}
+    .site-logo{font-weight:700;font-size:1.1rem;color:#0F172A;letter-spacing:.03em}
+    .site-logo span{color:#2563EB}
+    .back-btn{margin-left:auto;font-size:.85rem;color:#64748B;border:1px solid #E2E8F0;border-radius:999px;padding:.25rem .9rem;transition:all .2s}
+    .back-btn:hover{background:#2563EB;color:#fff;border-color:#2563EB;text-decoration:none}
+    main{max-width:720px;margin:2.5rem auto;padding:0 1.25rem}
+    .pill{display:inline-block;padding:.25em .9em;border-radius:999px;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+    .pill-robot{background:#FDF4FF;color:#7E22CE}
+    .article-meta{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin:.85rem 0 1.5rem}
+    .meta-item{font-size:.82rem;color:#64748B}
+    h1{font-size:1.6rem;font-weight:700;line-height:1.4;margin-bottom:.5rem}
+    .lead{font-size:1.05rem;color:#334155;border-left:3px solid #2563EB;padding-left:1rem;margin-bottom:2rem;line-height:1.8}
+    h2{font-size:1.1rem;font-weight:700;margin:2rem 0 .75rem;color:#1E3A5F}
+    p{margin-bottom:1rem;color:#334155}
+    .arch-compare{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.25rem 0}
+    @media(max-width:520px){.arch-compare{grid-template-columns:1fr}}
+    .arch-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:1.1rem 1.25rem}
+    .arch-card .arch-title{font-size:.9rem;font-weight:700;margin-bottom:.5rem}
+    .arch-card .arch-title.old{color:#DC2626}
+    .arch-card .arch-title.new{color:#059669}
+    .arch-card .steps{font-size:.82rem;color:#475569;line-height:2.2}
+    .arch-card .steps span{display:block;padding-left:.5rem;border-left:2px solid #E2E8F0}
+    .arch-card .steps span.arrow{padding-left:0;border:none;color:#94A3B8;text-align:center;font-size:.75rem}
+    .stat-row{display:flex;gap:1rem;margin:1.25rem 0;flex-wrap:wrap}
+    .stat-item{background:#EFF6FF;border-radius:12px;padding:1rem 1.25rem;flex:1;min-width:140px;text-align:center}
+    .stat-item .stat-num{font-size:1.6rem;font-weight:700;color:#2563EB}
+    .stat-item .stat-label{font-size:.8rem;color:#64748B;margin-top:.2rem}
+    .glossary{background:#FAFAFA;border:1px solid #E2E8F0;border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0}
+    .glossary h2{margin-top:0;font-size:1rem;color:#0F172A}
+    .glossary dl dt{font-weight:700;color:#2563EB;margin-top:.75rem}
+    .glossary dl dd{margin-left:0;color:#475569;font-size:.9rem}
+    .source-list{font-size:.82rem;color:#94A3B8;margin-top:2.5rem;padding-top:1rem;border-top:1px solid #E2E8F0}
+    footer{text-align:center;padding:2rem;font-size:.8rem;color:#94A3B8}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-logo">AI<span>脈動</span></div>
+      <a href="../index.html" class="back-btn">← 返回首頁</a>
+    </div>
+  </header>
+
+  <main>
+    <span class="pill pill-robot">🦾 機器人</span>
+    <h1>AI 直接操控機器人：跳過中間層，延遲降低 40%，具身智能迎來架構革命</h1>
+    <div class="article-meta">
+      <span class="meta-item">📅 2026 年 11 月 14 日</span>
+      <span class="meta-item">🕐 約 4 分鐘</span>
+      <span class="meta-item">📰 來源：emergent.sh、MIT、UC Berkeley</span>
+    </div>
+
+    <p class="lead">
+      研究人員於 2026 年 11 月 14 日發表突破性成果：讓大型語言模型（LLM）直接輸出機器人的馬達控制參數，徹底省去傳統架構中「語言 → 文字計畫 → 控制指令」的中間層，使機器人反應延遲降低約 40%，開啟具身智能的全新設計典範。
+    </p>
+
+    <h2>🔄 新舊架構對比</h2>
+    <div class="arch-compare">
+      <div class="arch-card">
+        <div class="arch-title old">❌ 傳統多階段架構</div>
+        <div class="steps">
+          <span>1. 人類語言指令</span>
+          <span class="arrow">↓ 語言解析</span>
+          <span>2. 轉換為符號文字計畫</span>
+          <span class="arrow">↓ 再次轉換</span>
+          <span>3. 轉換為控制指令</span>
+          <span class="arrow">↓ 執行</span>
+          <span>4. 馬達動作</span>
+        </div>
+      </div>
+      <div class="arch-card">
+        <div class="arch-title new">✅ 新型直接控制架構</div>
+        <div class="steps">
+          <span>1. 人類語言指令</span>
+          <span class="arrow">↓ LLM 直接映射</span>
+          <span>2. 連續控制參數</span>
+          <span class="arrow">↓ 直接執行</span>
+          <span>3. 馬達動作（角度/速度/力道）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-num">40%</div>
+        <div class="stat-label">延遲降低幅度</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3→1</div>
+        <div class="stat-label">處理階段數</div>
+      </div>
+    </div>
+
+    <h2>🧠 為什麼這很重要？</h2>
+    <p>傳統機器人控制系統需要將人類的自然語言（如「把那個瓶子放到桌上」）先解析為結構化計畫，再轉換為低階控制指令。每一次轉換都可能造成資訊損失與延遲累積。</p>
+    <p>新架構讓 LLM 直接「說」出機器人的動作（關節角度、速度、施力大小），就像大腦直接發送神經信號給肌肉，省去了反覆翻譯的步驟。這讓機器人在需要快速反應的場景（如抓取移動物體、即時避障）中有質的突破。</p>
+
+    <h2>🏭 UC Berkeley 與 NVIDIA 的具身機器人研究</h2>
+    <p>UC Berkeley 與 NVIDIA 在 2026 年機器人學頂會（CoRL）中提出「Agentic Robotics」典範：透過大型基礎模型與具身控制框架的結合（S0 身體控制 → S1 技能執行 → S2 規劃驗證），讓 AI Agent 能自主為機器人生成、測試並修正控制程式，大幅降低訓練數據需求。</p>
+
+    <div class="glossary">
+      <h2>📖 名詞解釋</h2>
+      <dl>
+        <dt>具身智能（Embodied AI）</dt>
+        <dd>讓 AI 不只存在於雲端或螢幕，而是透過實體機器人「身體」與物理世界互動的研究方向。重點在於感知（看到什麼）、規劃（做什麼）與動作（怎麼動）的整合。</dd>
+        <dt>連續控制參數（Continuous Control Parameters）</dt>
+        <dd>機器人馬達的精確控制值，如關節角度（幾度）、移動速度（幾公分/秒）、施力大小（幾牛頓）。與「向左轉」這種離散指令相比，連續參數能表達更細膩的動作。</dd>
+        <dt>CoRL（機器人學習會議）</dt>
+        <dd>Conference on Robot Learning，機器人 AI 領域的重要國際學術會議，每年發表最前沿的機器人學習研究成果。</dd>
+        <dt>Agentic Robotics（具體化智慧機器人）</dt>
+        <dd>結合 AI Agent 的規劃能力與機器人的物理執行能力，讓機器人能夠自主制定並執行複雜任務計畫，而非只執行預先設定的動作程序。</dd>
+      </dl>
+    </div>
+
+    <div class="source-list">
+      <strong>資料來源：</strong><br>
+      emergent.sh、MIT（mit.edu）、UC Berkeley（berkeley.edu）
+    </div>
+  </main>
+  <footer>AI脈動 · 每週更新 · 以台灣繁體中文整理全球 AI 動態</footer>
+</body>
+</html>
